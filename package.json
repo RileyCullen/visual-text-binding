@@ -1,0 +1,25 @@
+{
+  "name": "visual-text-binding",
+  "main": "dist/index.js",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "typescript": "^4.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RileyCullen/visual-text-binding.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RileyCullen/visual-text-binding/issues"
+  },
+  "homepage": "https://github.com/RileyCullen/visual-text-binding#readme"
+}
