@@ -37,17 +37,9 @@ class DataColumn implements IDataColumn {
      * @param fn Callback function that represents an transformation that will 
      *           be performed for each entry in data.
      */
-    transform(fn: (a: TDataEntry) => TDataEntry): Array<TDataEntry> {
-        let transformedArr: Array<TDataEntry> = [];
-
-        this.data.forEach(d => {
-            let curr = d;
-            if (d !== NaN) {
-                curr = fn(d);
-            }
-            transformedArr.push(curr);
-        });
-        return transformedArr;
+    transform(fn: (a: TDataEntry) => TDataEntry): DataColumn {
+        this.data = this.data.map(fn);
+        return this;
     }
 }
 
