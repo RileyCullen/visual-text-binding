@@ -41,6 +41,23 @@ class DataColumn implements IDataColumn {
         this.data = this.data.map(fn);
         return this;
     }
+
+    addEntries(entries: Array<TDataEntry>): DataColumn{
+        this.data.push(...entries);
+        return this;
+    }
+
+    updateEntries(indices: Array<number>, entries: Array<TDataEntry>): DataColumn {
+        indices.forEach((dataIndex, entriesIndex) => {
+            this.data[dataIndex] = entries[entriesIndex];
+        });
+        return this;
+    }
+
+    removeEntries(start: number, deleteCount: number): DataColumn {
+        this.data.splice(start, deleteCount);
+        return this;
+    }   
 }
 
 export default DataColumn;
