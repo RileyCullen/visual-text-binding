@@ -32,3 +32,18 @@ test('DataColumn.transform()', () => {
         .transform(addTwo);
     expect(data.getAll()).toEqual([3, 6, 11, NaN, 27, NaN]);
 });
+
+test('DataColumn.addEntries()', () => {
+    data.addEntries([1, 2, 3, 4]);
+    expect(data.getAll()).toEqual([3, 6, 11, NaN, 27, NaN, 1, 2, 3, 4])
+});
+
+test('DataColumn.removeEntries()', () => {
+    data.removeEntries(6, 4);
+    expect(data.getAll()).toEqual([3, 6, 11, NaN, 27, NaN]);
+});
+
+test('DataColumn.updateEntries()', () => {
+    data.updateEntries([0, 1, 2, 3, 4, 5], [1, 2, 3, 4, 5, 6]);
+    expect(data.getAll()).toEqual([1, 2, 3, 4, 5, 6]);
+});
