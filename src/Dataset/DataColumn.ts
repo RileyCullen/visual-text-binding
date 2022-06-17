@@ -47,7 +47,6 @@ class DataColumn implements IDataColumn {
             }
             transformedArr.push(curr);
         });
-        console.log(transformedArr)
         return transformedArr;
     }
 }
