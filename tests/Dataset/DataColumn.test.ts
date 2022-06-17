@@ -23,6 +23,12 @@ test('DataColumn.transform()', () => {
     let double = (d: TDataEntry): TDataEntry => {
         return d * d;
     };
-    let transformedData = new DataColumn('sample_name', data.transform(double));
-    expect(transformedData.getAll()).toEqual([1, 4, 9, NaN, 25, NaN]);
+
+    let addTwo = (d: TDataEntry): TDataEntry => {
+        return d + 2;
+    }
+
+    data.transform(double)
+        .transform(addTwo);
+    expect(data.getAll()).toEqual([3, 6, 11, NaN, 27, NaN]);
 });
