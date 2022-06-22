@@ -1,2 +1,3 @@
-export { TDataEntry } from './Dataset/DataEntry'
-export { IDataColumn } from './Dataset/DataColumn';
+export { TDataEntry } from './Dataset/DataEntry';
+export { TDataset } from './Dataset/Dataset';
+export { TDataElement } from './Dataset/Dataset';
