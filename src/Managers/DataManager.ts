@@ -2,7 +2,7 @@ import { IManager, TDataManagerElement, TDataset } from "../../types";
 import Dataset from "../Dataset/Dataset";
 import generateUID from "../Helpers/UID";
 
-class DataManager implements IManager<TDataset> {
+class DataManager implements IManager<TDataset, Dataset> {
     #elementList: Array<TDataManagerElement>;
 
     constructor() {
@@ -16,6 +16,14 @@ class DataManager implements IManager<TDataset> {
             value: new Dataset(name, data),
         });
         return uid;
+    }
+
+    getElementByID(id: string): Dataset {
+        for (let i = 0; i < this.#elementList.length; i++) {
+            let { uid, value } = this.#elementList[i];
+            if (uid === id) return value;
+        }
+        return new Dataset('', []);
     }
 }
 
