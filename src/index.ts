@@ -1,4 +1,5 @@
 import { TDataset } from "../types";
+import Dataset from "./Dataset/Dataset";
 import DataManager from "./Managers/DataManager";
 
 class VisualizationManager {
@@ -10,6 +11,10 @@ class VisualizationManager {
 
     addDataset(name: string, data: TDataset): string {
         return this.#dataManager.addElement(name, data);
+    }
+
+    getDataset(uid: string): Dataset {
+        return this.#dataManager.getElementByID(uid);
     }
 }
 
