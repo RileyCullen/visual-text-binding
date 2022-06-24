@@ -1,4 +1,4 @@
-import * as Lodash from 'lodash';
+import { cloneDeep } from 'lodash';
 import { TDataElement, TDataEntry, TDataset } from '../../types/index';
 
 /**
@@ -37,7 +37,7 @@ class Dataset {
         let tmp: TDataset = [];
 
         if (cols.length === 0) {
-            return Lodash.cloneDeep(this.#data);
+            return cloneDeep(this.#data);
         }
 
         this.#data.forEach(row => {
@@ -62,12 +62,12 @@ class Dataset {
         let tmp: TDataset = [];
 
         if (rows.length === 0) {
-            return Lodash.cloneDeep(data);
+            return cloneDeep(data);
         }
 
         rows.forEach(rowIndex => {
             if (rowIndex >= 0 && rowIndex < data.length) {
-                tmp.push(Lodash.cloneDeep(data[rowIndex]));
+                tmp.push(cloneDeep(data[rowIndex]));
             }
         });
 
