@@ -10,7 +10,7 @@ let NAME = 'test-name';
 
 test('DataManager.getElementByID(invalid_id) returns empty Dataset', () => {
     let manager = new DataManager();
-    expect(manager.getElementByID('invalid_id')).toEqual(new Dataset('', []))
+    expect(manager.getElementByID('invalid_id')).toBeNull();
 });
 
 test('DataManager.getElementByID(id) returns correct element', () => {
@@ -19,6 +19,6 @@ test('DataManager.getElementByID(id) returns correct element', () => {
     let uid = manager.addElement(NAME, DATA_ONE),
         dataset = manager.getElementByID(uid);
 
-    expect(dataset.getName()).toEqual(NAME);
-    expect(dataset.getSubset()).toEqual(DATA_ONE);
+    expect(dataset?.getName()).toEqual(NAME);
+    expect(dataset?.getSubset()).toEqual(DATA_ONE);
 });

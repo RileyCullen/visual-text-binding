@@ -11,5 +11,5 @@ export interface IManager<T, V> {
     /**
      *  Method call returns an empty T object if uid is not found within manager.
      */
-    getElementByID: (uid: string) => V;
+    getElementByID: (uid: string) => V | null;
 }
