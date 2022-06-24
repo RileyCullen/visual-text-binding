@@ -4,9 +4,13 @@
   "version": "0.0.1",
   "type": "commonjs",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "@optimize-lodash/rollup-plugin": "^3.0.0",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "@types/jest": "^28.1.1",
     "@types/lodash": "^4.14.182",
     "jest": "^28.1.1",
@@ -18,7 +22,8 @@
   "scripts": {
     "test": "jest",
     "compile": "tsc",
-    "build": "rollup --config"
+    "build": "rollup --config",
+    "cb": "tsc && rollup --config"
   },
   "repository": {
     "type": "git",
