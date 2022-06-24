@@ -10,9 +10,9 @@ class VisualizationManager {
         this.#dataManager = new DataManager();
 
         // If custom elements not defined, define them.
-        if (customElements.get('vis-container') === undefined) {
-            customElements.define('vis-container', VisualContainer);
-        }
+        // if (customElements.get('vis-container') === undefined) {
+        //     customElements.define('vis-container', VisualContainer);
+        // }
     }
 
     addDataset(name: string, data: TDataset): string {
