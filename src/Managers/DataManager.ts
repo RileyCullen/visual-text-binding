@@ -18,12 +18,12 @@ class DataManager implements IManager<TDataset, Dataset> {
         return uid;
     }
 
-    getElementByID(id: string): Dataset {
+    getElementByID(id: string): (Dataset | null) {
         for (let i = 0; i < this.#elementList.length; i++) {
             let { uid, value } = this.#elementList[i];
             if (uid === id) return value;
         }
-        return new Dataset('', []);
+        return null;
     }
 }
 
