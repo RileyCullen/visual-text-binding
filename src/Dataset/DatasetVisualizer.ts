@@ -1,4 +1,5 @@
 import { TDataset } from "../../types";
+import dragElement from "../Helpers/Draggable";
 
 class DatasetVisualizer {
     #data: TDataset;
@@ -35,6 +36,8 @@ class DatasetVisualizer {
 
         container.style.border = '2px solid';
         container.style.borderCollapse = 'collapse';
+
+        dragElement(container);
 
         return container;
     }
