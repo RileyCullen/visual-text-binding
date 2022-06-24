@@ -7,15 +7,35 @@ class DatasetVisualizer {
     }
 
     visualize(): HTMLElement {
-        let container = document.createElement('div');
-        this.#data.forEach(row => {
+        let container = document.createElement('table');
+
+        let header = document.createElement('tr');
+        for (let col in this.#data[0]) {
+            let headerText = document.createElement('th');
+            headerText.innerHTML = col;
+            headerText.style.backgroundColor = '#04AA6D';
+            headerText.style.color = 'white';
+            headerText.style.textAlign = 'left';
+            headerText.style.padding = '12px 0px 12px 10px';
+            header.appendChild(headerText);
+        }
+        container.appendChild(header);
+
+        this.#data.forEach((row, i) => {
+            let tableRow = document.createElement('tr')
             for (let col in row) {
-                console.log(row[col])
-                let cell = document.createElement('p');
+                let cell = document.createElement('td');
                 cell.innerHTML = row[col].toString();
-                container.appendChild(cell);
+                cell.style.padding = '10px';
+                tableRow.appendChild(cell);
             }
+            tableRow.style.border = '1px solid black';
+            container.appendChild(tableRow);
         });
+
+        container.style.border = '2px solid';
+        container.style.borderCollapse = 'collapse';
+
         return container;
     }
 }
