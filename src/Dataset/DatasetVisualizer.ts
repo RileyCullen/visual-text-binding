@@ -1,13 +1,20 @@
-import { IVisualElem, TDataset } from "../../types";
+import { IVisualElem, TDataEntry, TDataset } from "../../types";
 import dragElement from "../Helpers/Draggable";
+import Observer from "../Observer";
 
 class DatasetVisualizer implements IVisualElem {
     #data: TDataset;
     #container: HTMLElement;
+    #dataID: string;
+    #observer: Observer;
+    #newVal: TDataEntry;
 
-    constructor(data: TDataset) {
+    constructor(dataID: string, data: TDataset, observer: Observer) {
         this.#data = data;
         this.#container = document.createElement('table');
+        this.#dataID = dataID;
+        this.#observer = observer;
+        this.#newVal = NaN;
     }
 
     visualize(): HTMLElement {
@@ -19,7 +26,7 @@ class DatasetVisualizer implements IVisualElem {
     update(data: TDataset) {
         this.#data = data;
         this.#container.replaceChildren();
-        this.#createTable;
+        this.#createTable();
     }
 
     #createTable() {
@@ -39,6 +46,19 @@ class DatasetVisualizer implements IVisualElem {
             let tableRow = document.createElement('tr')
             for (let col in row) {
                 let cell = document.createElement('td');
+                cell.contentEditable = 'true';
+                cell.addEventListener('input', (e) => {
+                    let val = cell.textContent;
+
+                    if (val !== null) {
+                        let num = Number(val);
+                        if (!isNaN(num)) this.#newVal = num;
+                    }
+                });
+                cell.addEventListener('focusout', () => {
+                    this.#observer.updateDataset(this.#dataID, [[i, col]], [this.#newVal])
+                });
+
                 cell.innerHTML = row[col].toString();
                 cell.style.padding = '10px';
                 tableRow.appendChild(cell);
