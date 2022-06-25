@@ -3099,9 +3099,9 @@
         if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
         return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
     };
-    var _TextElem_instances, _TextElem_container, _TextElem_data, _TextElem_tuple, _TextElem_newVal, _TextElem_observer, _TextElem_dataID, _TextElem_createTextElem;
+    var _TextElem_instances, _TextElem_container, _TextElem_data, _TextElem_tuple, _TextElem_newVal, _TextElem_observer, _TextElem_dataID, _TextElem_pStyle, _TextElem_createTextElem;
     class TextElem {
-        constructor(dataID, data, tuple, observer) {
+        constructor(dataID, data, tuple, observer, divStyle = {}, pStyle = {}) {
             _TextElem_instances.add(this);
             _TextElem_container.set(this, void 0);
             _TextElem_data.set(this, void 0);
@@ -3109,12 +3109,15 @@
             _TextElem_newVal.set(this, void 0);
             _TextElem_observer.set(this, void 0);
             _TextElem_dataID.set(this, void 0);
+            _TextElem_pStyle.set(this, void 0);
             __classPrivateFieldSet$1(this, _TextElem_container, document.createElement('div'), "f");
+            Object.assign(__classPrivateFieldGet$1(this, _TextElem_container, "f").style, divStyle);
             __classPrivateFieldSet$1(this, _TextElem_data, data, "f");
             __classPrivateFieldSet$1(this, _TextElem_tuple, tuple, "f");
             __classPrivateFieldSet$1(this, _TextElem_newVal, NaN, "f");
             __classPrivateFieldSet$1(this, _TextElem_observer, observer, "f");
             __classPrivateFieldSet$1(this, _TextElem_dataID, dataID, "f");
+            __classPrivateFieldSet$1(this, _TextElem_pStyle, pStyle, "f");
             dragElement(__classPrivateFieldGet$1(this, _TextElem_container, "f"));
         }
         visualize() {
@@ -3127,9 +3130,10 @@
             __classPrivateFieldGet$1(this, _TextElem_instances, "m", _TextElem_createTextElem).call(this);
         }
     }
-    _TextElem_container = new WeakMap(), _TextElem_data = new WeakMap(), _TextElem_tuple = new WeakMap(), _TextElem_newVal = new WeakMap(), _TextElem_observer = new WeakMap(), _TextElem_dataID = new WeakMap(), _TextElem_instances = new WeakSet(), _TextElem_createTextElem = function _TextElem_createTextElem() {
+    _TextElem_container = new WeakMap(), _TextElem_data = new WeakMap(), _TextElem_tuple = new WeakMap(), _TextElem_newVal = new WeakMap(), _TextElem_observer = new WeakMap(), _TextElem_dataID = new WeakMap(), _TextElem_pStyle = new WeakMap(), _TextElem_instances = new WeakSet(), _TextElem_createTextElem = function _TextElem_createTextElem() {
         let [row, col] = __classPrivateFieldGet$1(this, _TextElem_tuple, "f"), dataElem = __classPrivateFieldGet$1(this, _TextElem_data, "f")[row][col];
         let domElem = document.createElement('p');
+        Object.assign(domElem, __classPrivateFieldGet$1(this, _TextElem_pStyle, "f"));
         domElem.contentEditable = 'true';
         domElem.addEventListener('input', () => {
             __classPrivateFieldSet$1(this, _TextElem_newVal, validateInput(domElem), "f");
@@ -3188,12 +3192,12 @@
             // create binding
             __classPrivateFieldGet(this, _VisualizationManager_observer, "f").addBinding(uid, visualizer);
         }
-        addTextBinding(uid, tuple) {
+        addTextBinding(uid, tuple, divStyle, pStyle) {
             var _a;
             let dataset = __classPrivateFieldGet(this, _VisualizationManager_dataManager, "f").getElementByID(uid);
             if (dataset == null)
                 return;
-            let text = new TextElem(uid, dataset.getSubset(), tuple, __classPrivateFieldGet(this, _VisualizationManager_observer, "f"));
+            let text = new TextElem(uid, dataset.getSubset(), tuple, __classPrivateFieldGet(this, _VisualizationManager_observer, "f"), divStyle, pStyle);
             (_a = __classPrivateFieldGet(this, _VisualizationManager_container, "f")) === null || _a === void 0 ? void 0 : _a.appendChild(text.visualize());
             __classPrivateFieldGet(this, _VisualizationManager_observer, "f").addBinding(uid, text);
         }

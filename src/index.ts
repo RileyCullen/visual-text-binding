@@ -45,11 +45,12 @@ class VisualizationManager {
         this.#observer.addBinding(uid, visualizer);
     }
 
-    addTextBinding(uid: string, tuple: TTuple) {
+    addTextBinding(uid: string, tuple: TTuple, divStyle: Object, pStyle: Object) {
         let dataset = this.#dataManager.getElementByID(uid);
         if (dataset == null) return;
 
-        let text = new TextElem(uid, dataset.getSubset(), tuple, this.#observer);
+        let text = new TextElem(uid, dataset.getSubset(), tuple, this.#observer,
+            divStyle, pStyle);
         this.#container?.appendChild(text.visualize());
         this.#observer.addBinding(uid, text);
     }

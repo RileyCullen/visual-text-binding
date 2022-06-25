@@ -10,14 +10,19 @@ class TextElem implements IVisualElem {
     #newVal: TDataEntry;
     #observer: Observer;
     #dataID: string;
+    #pStyle: Object;
 
-    constructor(dataID: string, data: TDataset, tuple: TTuple, observer: Observer) {
+    constructor(dataID: string, data: TDataset, tuple: TTuple, 
+        observer: Observer, divStyle: Object = {}, pStyle: Object = {}) {
         this.#container = document.createElement('div');
+        Object.assign(this.#container.style, divStyle)
+
         this.#data = data;
         this.#tuple = tuple;
         this.#newVal = NaN;
         this.#observer = observer;
         this.#dataID = dataID;
+        this.#pStyle = pStyle;
 
         dragElement(this.#container);
     }
@@ -38,6 +43,7 @@ class TextElem implements IVisualElem {
             dataElem = this.#data[row][col];
 
         let domElem = document.createElement('p');
+        Object.assign(domElem, this.#pStyle);
         domElem.contentEditable = 'true';
         domElem.addEventListener('input', () => {
             this.#newVal = validateInput(domElem);

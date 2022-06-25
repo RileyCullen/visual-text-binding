@@ -14,7 +14,12 @@
             vm.createVisualContainer(100, 100, 'body');
             vm.visualizeDataset(uid);
 
-            vm.addTextBinding(uid, [0, 'a']);
+            let divStyle = {};
+            let pStyle = {
+                color: 'red',
+            };
+
+            vm.addTextBinding(uid, [0, 'a'], pStyle = pStyle);
         </script>
     </body>
 </html>
