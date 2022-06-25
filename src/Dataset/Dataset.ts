@@ -1,5 +1,5 @@
 import { cloneDeep } from 'lodash';
-import { TDataElement, TDataEntry, TDataset } from '../../types/index';
+import { TDataElement, TDataEntry, TDataset, TTuple } from '../../types/index';
 
 /**
  * Dataset types are semi-mutable. Existing entries can be modified but not removed.
@@ -14,8 +14,17 @@ class Dataset {
         this.#data = data;
     }
 
-    modify(row: number, col: string, value: TDataEntry) {
-        this.#data[row][col] = value;
+    /**
+     *
+     * @param indexArr Entries follow the form [number, string] where index 0 
+     *                 denotes the row and index 1 denotes the column.
+     * @param values 
+     */
+    modify(indexArr: TTuple[], values: Array<TDataEntry>) {
+        indexArr.forEach((tuple, i) => {
+            let [row, col] = tuple;
+            this.#data[row][col] = values[i];
+        });
     }
 
     /**

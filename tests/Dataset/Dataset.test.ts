@@ -35,7 +35,7 @@ test('Data.getSubset([0, 2], [a, b, d]) returns correct subset', () => {
 });
 
 test('Data.modify(0, a, 100)', () => {
-    dataset.modify(0, 'a', 100);
+    dataset.modify([[0, 'a']], [100]);
     let [ value ] = dataset.getSubset([0], ['a']);
     expect(value.a).toEqual(100);
 });
