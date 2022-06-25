@@ -1,15 +1,28 @@
-import { TDataset } from "../../types";
+import { IVisualElem, TDataset } from "../../types";
 import dragElement from "../Helpers/Draggable";
 
-class DatasetVisualizer {
+class DatasetVisualizer implements IVisualElem {
     #data: TDataset;
+    #container: HTMLElement;
+
     constructor(data: TDataset) {
         this.#data = data;
+        this.#container = document.createElement('table');
     }
 
     visualize(): HTMLElement {
-        let container = document.createElement('table');
+        this.#createTable();
+        dragElement(this.#container);
+        return this.#container;
+    }
 
+    update(data: TDataset) {
+        this.#data = data;
+        this.#container.replaceChildren();
+        this.#createTable;
+    }
+
+    #createTable() {
         let header = document.createElement('tr');
         for (let col in this.#data[0]) {
             let headerText = document.createElement('th');
@@ -20,7 +33,7 @@ class DatasetVisualizer {
             headerText.style.padding = '12px 0px 12px 10px';
             header.appendChild(headerText);
         }
-        container.appendChild(header);
+        this.#container.appendChild(header);
 
         this.#data.forEach((row, i) => {
             let tableRow = document.createElement('tr')
@@ -31,15 +44,11 @@ class DatasetVisualizer {
                 tableRow.appendChild(cell);
             }
             tableRow.style.border = '1px solid black';
-            container.appendChild(tableRow);
+            this.#container.appendChild(tableRow);
         });
 
-        container.style.border = '2px solid';
-        container.style.borderCollapse = 'collapse';
-
-        dragElement(container);
-
-        return container;
+        this.#container.style.border = '2px solid';
+        this.#container.style.borderCollapse = 'collapse';
     }
 }
 
