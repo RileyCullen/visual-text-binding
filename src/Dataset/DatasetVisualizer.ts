@@ -1,5 +1,6 @@
 import { IVisualElem, TDataEntry, TDataset } from "../../types";
 import dragElement from "../Helpers/Draggable";
+import validateInput from "../Helpers/ValidateInput";
 import Observer from "../Observer";
 
 class DatasetVisualizer implements IVisualElem {
@@ -48,12 +49,7 @@ class DatasetVisualizer implements IVisualElem {
                 let cell = document.createElement('td');
                 cell.contentEditable = 'true';
                 cell.addEventListener('input', (e) => {
-                    let val = cell.textContent;
-
-                    if (val !== null) {
-                        let num = Number(val);
-                        if (!isNaN(num)) this.#newVal = num;
-                    }
+                    this.#newVal = validateInput(cell);
                 });
                 cell.addEventListener('focusout', () => {
                     this.#observer.updateDataset(this.#dataID, [[i, col]], [this.#newVal])
