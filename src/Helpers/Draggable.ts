@@ -6,7 +6,6 @@ const dragElement = (elmnt: HTMLElement) => {
 
     function dragMouseDown(e: MouseEvent) {
         e = e || window.event;
-        e.preventDefault();
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
