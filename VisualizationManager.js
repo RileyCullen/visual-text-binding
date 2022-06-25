@@ -2797,13 +2797,13 @@
 
     var cloneDeep_1 = cloneDeep;
 
-    var __classPrivateFieldSet$4 = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    var __classPrivateFieldSet$5 = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
         if (kind === "m") throw new TypeError("Private method is not writable");
         if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
         if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
         return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
     };
-    var __classPrivateFieldGet$4 = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    var __classPrivateFieldGet$5 = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
         if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
         if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
         return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
@@ -2818,8 +2818,8 @@
             _Dataset_instances.add(this);
             _Dataset_name.set(this, void 0);
             _Dataset_data.set(this, void 0);
-            __classPrivateFieldSet$4(this, _Dataset_name, name, "f");
-            __classPrivateFieldSet$4(this, _Dataset_data, data, "f");
+            __classPrivateFieldSet$5(this, _Dataset_name, name, "f");
+            __classPrivateFieldSet$5(this, _Dataset_data, data, "f");
         }
         /**
          *
@@ -2830,7 +2830,7 @@
         modify(indexArr, values) {
             indexArr.forEach((tuple, i) => {
                 let [row, col] = tuple;
-                __classPrivateFieldGet$4(this, _Dataset_data, "f")[row][col] = values[i];
+                __classPrivateFieldGet$5(this, _Dataset_data, "f")[row][col] = values[i];
             });
         }
         /**
@@ -2840,7 +2840,7 @@
          *             rows should be returned.
          */
         getRows(rows = []) {
-            return __classPrivateFieldGet$4(this, _Dataset_instances, "m", _Dataset_getRows).call(this, __classPrivateFieldGet$4(this, _Dataset_data, "f"), rows);
+            return __classPrivateFieldGet$5(this, _Dataset_instances, "m", _Dataset_getRows).call(this, __classPrivateFieldGet$5(this, _Dataset_data, "f"), rows);
         }
         /**
          *
@@ -2850,9 +2850,9 @@
         getColumns(cols = []) {
             let tmp = [];
             if (cols.length === 0) {
-                return cloneDeep_1(__classPrivateFieldGet$4(this, _Dataset_data, "f"));
+                return cloneDeep_1(__classPrivateFieldGet$5(this, _Dataset_data, "f"));
             }
-            __classPrivateFieldGet$4(this, _Dataset_data, "f").forEach(row => {
+            __classPrivateFieldGet$5(this, _Dataset_data, "f").forEach(row => {
                 let truncatedRow = {};
                 cols.forEach(column => {
                     truncatedRow[column] = row[column];
@@ -2863,9 +2863,9 @@
         }
         getSubset(rows = [], cols = []) {
             let tmp = this.getColumns(cols);
-            return __classPrivateFieldGet$4(this, _Dataset_instances, "m", _Dataset_getRows).call(this, tmp, rows);
+            return __classPrivateFieldGet$5(this, _Dataset_instances, "m", _Dataset_getRows).call(this, tmp, rows);
         }
-        getName() { return __classPrivateFieldGet$4(this, _Dataset_name, "f"); }
+        getName() { return __classPrivateFieldGet$5(this, _Dataset_name, "f"); }
     }
     _Dataset_name = new WeakMap(), _Dataset_data = new WeakMap(), _Dataset_instances = new WeakSet(), _Dataset_getRows = function _Dataset_getRows(data, rows) {
         let tmp = [];
@@ -2880,13 +2880,13 @@
         return tmp;
     };
 
-    var __classPrivateFieldSet$3 = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    var __classPrivateFieldSet$4 = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
         if (kind === "m") throw new TypeError("Private method is not writable");
         if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
         if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
         return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
     };
-    var __classPrivateFieldGet$3 = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    var __classPrivateFieldGet$4 = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
         if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
         if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
         return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
@@ -2895,19 +2895,19 @@
     class DataManager {
         constructor() {
             _DataManager_elementList.set(this, void 0);
-            __classPrivateFieldSet$3(this, _DataManager_elementList, [], "f");
+            __classPrivateFieldSet$4(this, _DataManager_elementList, [], "f");
         }
         addElement(name, data) {
             let uid = generateUID();
-            __classPrivateFieldGet$3(this, _DataManager_elementList, "f").push({
+            __classPrivateFieldGet$4(this, _DataManager_elementList, "f").push({
                 uid: uid,
                 value: new Dataset(name, data),
             });
             return uid;
         }
         getElementByID(id) {
-            for (let i = 0; i < __classPrivateFieldGet$3(this, _DataManager_elementList, "f").length; i++) {
-                let { uid, value } = __classPrivateFieldGet$3(this, _DataManager_elementList, "f")[i];
+            for (let i = 0; i < __classPrivateFieldGet$4(this, _DataManager_elementList, "f").length; i++) {
+                let { uid, value } = __classPrivateFieldGet$4(this, _DataManager_elementList, "f")[i];
                 if (uid === id)
                     return value;
             }
@@ -2956,13 +2956,28 @@
         }
     };
 
-    var __classPrivateFieldSet$2 = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    /**
+     *
+     * @param cell
+     * @returns 0 if input is null or not a number.
+     */
+    const validateInput = (cell) => {
+        let val = cell.textContent;
+        if (val === null)
+            return 0;
+        let num = Number(val);
+        if (isNaN(num))
+            return 0;
+        return num;
+    };
+
+    var __classPrivateFieldSet$3 = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
         if (kind === "m") throw new TypeError("Private method is not writable");
         if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
         if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
         return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
     };
-    var __classPrivateFieldGet$2 = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    var __classPrivateFieldGet$3 = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
         if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
         if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
         return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
@@ -2976,26 +2991,26 @@
             _DatasetVisualizer_dataID.set(this, void 0);
             _DatasetVisualizer_observer.set(this, void 0);
             _DatasetVisualizer_newVal.set(this, void 0);
-            __classPrivateFieldSet$2(this, _DatasetVisualizer_data, data, "f");
-            __classPrivateFieldSet$2(this, _DatasetVisualizer_container, document.createElement('table'), "f");
-            __classPrivateFieldSet$2(this, _DatasetVisualizer_dataID, dataID, "f");
-            __classPrivateFieldSet$2(this, _DatasetVisualizer_observer, observer, "f");
-            __classPrivateFieldSet$2(this, _DatasetVisualizer_newVal, NaN, "f");
+            __classPrivateFieldSet$3(this, _DatasetVisualizer_data, data, "f");
+            __classPrivateFieldSet$3(this, _DatasetVisualizer_container, document.createElement('table'), "f");
+            __classPrivateFieldSet$3(this, _DatasetVisualizer_dataID, dataID, "f");
+            __classPrivateFieldSet$3(this, _DatasetVisualizer_observer, observer, "f");
+            __classPrivateFieldSet$3(this, _DatasetVisualizer_newVal, NaN, "f");
         }
         visualize() {
-            __classPrivateFieldGet$2(this, _DatasetVisualizer_instances, "m", _DatasetVisualizer_createTable).call(this);
-            dragElement(__classPrivateFieldGet$2(this, _DatasetVisualizer_container, "f"));
-            return __classPrivateFieldGet$2(this, _DatasetVisualizer_container, "f");
+            __classPrivateFieldGet$3(this, _DatasetVisualizer_instances, "m", _DatasetVisualizer_createTable).call(this);
+            dragElement(__classPrivateFieldGet$3(this, _DatasetVisualizer_container, "f"));
+            return __classPrivateFieldGet$3(this, _DatasetVisualizer_container, "f");
         }
         update(data) {
-            __classPrivateFieldSet$2(this, _DatasetVisualizer_data, data, "f");
-            __classPrivateFieldGet$2(this, _DatasetVisualizer_container, "f").replaceChildren();
-            __classPrivateFieldGet$2(this, _DatasetVisualizer_instances, "m", _DatasetVisualizer_createTable).call(this);
+            __classPrivateFieldSet$3(this, _DatasetVisualizer_data, data, "f");
+            __classPrivateFieldGet$3(this, _DatasetVisualizer_container, "f").replaceChildren();
+            __classPrivateFieldGet$3(this, _DatasetVisualizer_instances, "m", _DatasetVisualizer_createTable).call(this);
         }
     }
     _DatasetVisualizer_data = new WeakMap(), _DatasetVisualizer_container = new WeakMap(), _DatasetVisualizer_dataID = new WeakMap(), _DatasetVisualizer_observer = new WeakMap(), _DatasetVisualizer_newVal = new WeakMap(), _DatasetVisualizer_instances = new WeakSet(), _DatasetVisualizer_createTable = function _DatasetVisualizer_createTable() {
         let header = document.createElement('tr');
-        for (let col in __classPrivateFieldGet$2(this, _DatasetVisualizer_data, "f")[0]) {
+        for (let col in __classPrivateFieldGet$3(this, _DatasetVisualizer_data, "f")[0]) {
             let headerText = document.createElement('th');
             headerText.innerHTML = col;
             headerText.style.backgroundColor = '#04AA6D';
@@ -3004,32 +3019,73 @@
             headerText.style.padding = '12px 0px 12px 10px';
             header.appendChild(headerText);
         }
-        __classPrivateFieldGet$2(this, _DatasetVisualizer_container, "f").appendChild(header);
-        __classPrivateFieldGet$2(this, _DatasetVisualizer_data, "f").forEach((row, i) => {
+        __classPrivateFieldGet$3(this, _DatasetVisualizer_container, "f").appendChild(header);
+        __classPrivateFieldGet$3(this, _DatasetVisualizer_data, "f").forEach((row, i) => {
             let tableRow = document.createElement('tr');
             for (let col in row) {
                 let cell = document.createElement('td');
                 cell.contentEditable = 'true';
                 cell.addEventListener('input', (e) => {
-                    let val = cell.textContent;
-                    if (val !== null) {
-                        let num = Number(val);
-                        if (!isNaN(num))
-                            __classPrivateFieldSet$2(this, _DatasetVisualizer_newVal, num, "f");
-                    }
+                    __classPrivateFieldSet$3(this, _DatasetVisualizer_newVal, validateInput(cell), "f");
                 });
                 cell.addEventListener('focusout', () => {
-                    __classPrivateFieldGet$2(this, _DatasetVisualizer_observer, "f").updateDataset(__classPrivateFieldGet$2(this, _DatasetVisualizer_dataID, "f"), [[i, col]], [__classPrivateFieldGet$2(this, _DatasetVisualizer_newVal, "f")]);
+                    __classPrivateFieldGet$3(this, _DatasetVisualizer_observer, "f").updateDataset(__classPrivateFieldGet$3(this, _DatasetVisualizer_dataID, "f"), [[i, col]], [__classPrivateFieldGet$3(this, _DatasetVisualizer_newVal, "f")]);
                 });
                 cell.innerHTML = row[col].toString();
                 cell.style.padding = '10px';
                 tableRow.appendChild(cell);
             }
             tableRow.style.border = '1px solid black';
-            __classPrivateFieldGet$2(this, _DatasetVisualizer_container, "f").appendChild(tableRow);
+            __classPrivateFieldGet$3(this, _DatasetVisualizer_container, "f").appendChild(tableRow);
         });
-        __classPrivateFieldGet$2(this, _DatasetVisualizer_container, "f").style.border = '2px solid';
-        __classPrivateFieldGet$2(this, _DatasetVisualizer_container, "f").style.borderCollapse = 'collapse';
+        __classPrivateFieldGet$3(this, _DatasetVisualizer_container, "f").style.border = '2px solid';
+        __classPrivateFieldGet$3(this, _DatasetVisualizer_container, "f").style.borderCollapse = 'collapse';
+    };
+
+    var __classPrivateFieldSet$2 = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+        if (kind === "m") throw new TypeError("Private method is not writable");
+        if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+        if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+        return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+    };
+    var __classPrivateFieldGet$2 = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+        if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+        if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+        return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+    };
+    var _Observer_instances, _Observer_bindings, _Observer_updateDependencies;
+    class Observer {
+        constructor() {
+            _Observer_instances.add(this);
+            _Observer_bindings.set(this, void 0);
+            __classPrivateFieldSet$2(this, _Observer_bindings, {}, "f");
+        }
+        addDataset(datasetID, dataset) {
+            if (!__classPrivateFieldGet$2(this, _Observer_bindings, "f").hasOwnProperty(datasetID)) {
+                __classPrivateFieldGet$2(this, _Observer_bindings, "f")[datasetID] = {
+                    dataset: dataset,
+                    dependencies: []
+                };
+            }
+        }
+        addBinding(datasetID, dependency) {
+            __classPrivateFieldGet$2(this, _Observer_bindings, "f")[datasetID].dependencies.push(dependency);
+        }
+        updateDataset(datasetID, indexArr, values) {
+            if (__classPrivateFieldGet$2(this, _Observer_bindings, "f").hasOwnProperty(datasetID)) {
+                __classPrivateFieldGet$2(this, _Observer_bindings, "f")[datasetID].dataset.modify(indexArr, values);
+                __classPrivateFieldGet$2(this, _Observer_instances, "m", _Observer_updateDependencies).call(this, datasetID);
+            }
+        }
+    }
+    _Observer_bindings = new WeakMap(), _Observer_instances = new WeakSet(), _Observer_updateDependencies = function _Observer_updateDependencies(datasetID) {
+        if (__classPrivateFieldGet$2(this, _Observer_bindings, "f").hasOwnProperty(datasetID)) {
+            let entry = __classPrivateFieldGet$2(this, _Observer_bindings, "f")[datasetID];
+            entry.dependencies.forEach(dep => {
+                let data = entry.dataset.getSubset();
+                dep.update(data);
+            });
+        }
     };
 
     var __classPrivateFieldSet$1 = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
@@ -3043,39 +3099,46 @@
         if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
         return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
     };
-    var _Observer_instances, _Observer_bindings, _Observer_updateDependencies;
-    class Observer {
-        constructor() {
-            _Observer_instances.add(this);
-            _Observer_bindings.set(this, void 0);
-            __classPrivateFieldSet$1(this, _Observer_bindings, {}, "f");
+    var _TextElem_instances, _TextElem_container, _TextElem_data, _TextElem_tuple, _TextElem_newVal, _TextElem_observer, _TextElem_dataID, _TextElem_createTextElem;
+    class TextElem {
+        constructor(dataID, data, tuple, observer) {
+            _TextElem_instances.add(this);
+            _TextElem_container.set(this, void 0);
+            _TextElem_data.set(this, void 0);
+            _TextElem_tuple.set(this, void 0);
+            _TextElem_newVal.set(this, void 0);
+            _TextElem_observer.set(this, void 0);
+            _TextElem_dataID.set(this, void 0);
+            __classPrivateFieldSet$1(this, _TextElem_container, document.createElement('div'), "f");
+            __classPrivateFieldSet$1(this, _TextElem_data, data, "f");
+            __classPrivateFieldSet$1(this, _TextElem_tuple, tuple, "f");
+            __classPrivateFieldSet$1(this, _TextElem_newVal, NaN, "f");
+            __classPrivateFieldSet$1(this, _TextElem_observer, observer, "f");
+            __classPrivateFieldSet$1(this, _TextElem_dataID, dataID, "f");
+            dragElement(__classPrivateFieldGet$1(this, _TextElem_container, "f"));
         }
-        addDataset(datasetID, dataset) {
-            if (!__classPrivateFieldGet$1(this, _Observer_bindings, "f").hasOwnProperty(datasetID)) {
-                __classPrivateFieldGet$1(this, _Observer_bindings, "f")[datasetID] = {
-                    dataset: dataset,
-                    dependencies: []
-                };
-            }
+        visualize() {
+            __classPrivateFieldGet$1(this, _TextElem_instances, "m", _TextElem_createTextElem).call(this);
+            return __classPrivateFieldGet$1(this, _TextElem_container, "f");
         }
-        addBinding(datasetID, dependency) {
-            __classPrivateFieldGet$1(this, _Observer_bindings, "f")[datasetID].dependencies.push(dependency);
-        }
-        updateDataset(datasetID, indexArr, values) {
-            if (__classPrivateFieldGet$1(this, _Observer_bindings, "f").hasOwnProperty(datasetID)) {
-                __classPrivateFieldGet$1(this, _Observer_bindings, "f")[datasetID].dataset.modify(indexArr, values);
-                __classPrivateFieldGet$1(this, _Observer_instances, "m", _Observer_updateDependencies).call(this, datasetID);
-            }
+        update(data) {
+            __classPrivateFieldSet$1(this, _TextElem_data, data, "f");
+            __classPrivateFieldGet$1(this, _TextElem_container, "f").replaceChildren();
+            __classPrivateFieldGet$1(this, _TextElem_instances, "m", _TextElem_createTextElem).call(this);
         }
     }
-    _Observer_bindings = new WeakMap(), _Observer_instances = new WeakSet(), _Observer_updateDependencies = function _Observer_updateDependencies(datasetID) {
-        if (__classPrivateFieldGet$1(this, _Observer_bindings, "f").hasOwnProperty(datasetID)) {
-            let entry = __classPrivateFieldGet$1(this, _Observer_bindings, "f")[datasetID];
-            entry.dependencies.forEach(dep => {
-                let data = entry.dataset.getSubset();
-                dep.update(data);
-            });
-        }
+    _TextElem_container = new WeakMap(), _TextElem_data = new WeakMap(), _TextElem_tuple = new WeakMap(), _TextElem_newVal = new WeakMap(), _TextElem_observer = new WeakMap(), _TextElem_dataID = new WeakMap(), _TextElem_instances = new WeakSet(), _TextElem_createTextElem = function _TextElem_createTextElem() {
+        let [row, col] = __classPrivateFieldGet$1(this, _TextElem_tuple, "f"), dataElem = __classPrivateFieldGet$1(this, _TextElem_data, "f")[row][col];
+        let domElem = document.createElement('p');
+        domElem.contentEditable = 'true';
+        domElem.addEventListener('input', () => {
+            __classPrivateFieldSet$1(this, _TextElem_newVal, validateInput(domElem), "f");
+        });
+        domElem.addEventListener('focusout', () => {
+            __classPrivateFieldGet$1(this, _TextElem_observer, "f").updateDataset(__classPrivateFieldGet$1(this, _TextElem_dataID, "f"), [[row, col]], [__classPrivateFieldGet$1(this, _TextElem_newVal, "f")]);
+        });
+        domElem.innerHTML = dataElem.toString();
+        __classPrivateFieldGet$1(this, _TextElem_container, "f").appendChild(domElem);
     };
 
     var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
@@ -3124,6 +3187,15 @@
             (_a = __classPrivateFieldGet(this, _VisualizationManager_container, "f")) === null || _a === void 0 ? void 0 : _a.appendChild(visualizer.visualize());
             // create binding
             __classPrivateFieldGet(this, _VisualizationManager_observer, "f").addBinding(uid, visualizer);
+        }
+        addTextBinding(uid, tuple) {
+            var _a;
+            let dataset = __classPrivateFieldGet(this, _VisualizationManager_dataManager, "f").getElementByID(uid);
+            if (dataset == null)
+                return;
+            let text = new TextElem(uid, dataset.getSubset(), tuple, __classPrivateFieldGet(this, _VisualizationManager_observer, "f"));
+            (_a = __classPrivateFieldGet(this, _VisualizationManager_container, "f")) === null || _a === void 0 ? void 0 : _a.appendChild(text.visualize());
+            __classPrivateFieldGet(this, _VisualizationManager_observer, "f").addBinding(uid, text);
         }
         createVisualContainer(width, height, addToID) {
             var _a;
