@@ -10,6 +10,7 @@ export { IManager } from './Managers/Manager';
 export { TDataManagerElement } from './Managers/Manager';
 
 export interface IVisualElem {
+    visualize: () => HTMLElement;
     update: (data: TDataset) => void
 }
 
