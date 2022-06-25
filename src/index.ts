@@ -1,10 +1,11 @@
-import { TDataset } from "../types";
+import { TDataset, TTuple } from "../types";
 import Dataset from "./Dataset/Dataset";
 import generateUID from "./Helpers/UID";
 import DataManager from "./Managers/DataManager";
 import createContainer from "./Helpers/VisualContainer";
 import DatasetVisualizer from "./Dataset/DatasetVisualizer";
 import Observer from "./Observer";
+import TextElem from "./TextElement/TextElem";
 
 class VisualizationManager {
     #dataManager: DataManager;
@@ -42,6 +43,15 @@ class VisualizationManager {
         this.#container?.appendChild(visualizer.visualize());
         // create binding
         this.#observer.addBinding(uid, visualizer);
+    }
+
+    addTextBinding(uid: string, tuple: TTuple) {
+        let dataset = this.#dataManager.getElementByID(uid);
+        if (dataset == null) return;
+
+        let text = new TextElem(uid, dataset.getSubset(), tuple, this.#observer);
+        this.#container?.appendChild(text.visualize());
+        this.#observer.addBinding(uid, text);
     }
 
     createVisualContainer(width: number, height: number, addToID: string): void {
